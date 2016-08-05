@@ -32,6 +32,23 @@
           <div class="content">
             <p class="by"><a href="/users/{{ tweet.name }}">{{tweet.name}}</a></p>
             <p><a href="/tweets/{{ tweet.id }}">{{tweet.content}}</a></p>
+            {% if showRetweet %}
+            <form action="/retweet" method="POST">
+              <label for="name_field">Name:</label>
+              <input name="name" type="text" id="name_field" "/>
+
+              <label for="text_field">Text:</label>
+              <input name="content" type="text" id="text_field" value="@{{username}} " />
+
+              <input type="submit" value="Retweet" />
+            </form>
+            {% endif %}
+            {% if showDelete %}
+            <form action="/tweets/delete" method="POST">
+              <!-- <input name="delete" value = "{{tweet.id}}"/> -->
+              <button name="delete" value = "{{tweet.id}}" type="submit">Delete</button>
+            </form>
+            {% endif %}
           </div>
         </div>
       {% endfor %}
